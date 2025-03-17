@@ -24,7 +24,7 @@ public class ExpenseController {
     }
 
     @GetMapping("/{userId}")
-    public Optional<Expense> getExpensesByUserId(@PathVariable Long userId) {
+    public Optional<Expense> getExpensesByUserId(@PathVariable("userId") Long userId) {
         Optional<Expense> expenseList = expenseService.getExpensesByUserId(userId);
 
         return expenseList;
