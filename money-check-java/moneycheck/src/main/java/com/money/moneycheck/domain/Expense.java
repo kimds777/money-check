@@ -14,6 +14,21 @@ public class Expense {
     private Date updated_at;
     private boolean is_active;
 
+    public Expense(){};
+
+    public Expense(long expenditure_id, long user_id, long asset_id, long expenditure_class_id, String content, Date expenditure_at, int amount, Date created_at, Date updated_at, boolean is_active) {
+        this.expenditure_id = expenditure_id;
+        this.user_id = user_id;
+        this.asset_id = asset_id;
+        this.expenditure_class_id = expenditure_class_id;
+        this.content = content;
+        this.expenditure_at = expenditure_at;
+        this.amount = amount;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.is_active = is_active;
+    }
+
     public long getExpenditure_id() {
         return expenditure_id;
     }
