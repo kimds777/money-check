@@ -23,8 +23,8 @@ public class ExpenseController {
         this.expenseService = expenseService;
     }
 
-    @GetMapping("/{user_id}")
-    public Optional<Expense> getExpensesByUserId(@PathVariable("user_id") Long userId) {
+    @GetMapping("/{userId}")
+    public Optional<Expense> getExpensesByUserId(@PathVariable Long userId) {
         Optional<Expense> expenseList = expenseService.getExpensesByUserId(userId);
 
         return expenseList;
