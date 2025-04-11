@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
 
@@ -18,16 +17,23 @@ import java.util.Date;
 @Entity
 public class Expense {
     @Id
-    private long expenditure_id;
+    @Column(name = "expenditure_id")
+    private long expenditureId;
     @Column(name = "user_id")
     private long userId;
-    private long asset_id;
-    private long expenditure_class_id;
+    @Column(name = "asset_id")
+    private long assetId;
+    @Column(name = "expenditure_class_id")
+    private long expenditureClassId;
     private String content;
-    private Date expenditure_at;
+    @Column(name = "expenditure_at")
+    private Date expenditureAt;
     private int amount;
-    private Date created_at;
-    private Date updated_at;
-    private boolean is_active;
+    @Column(name = "created_at")
+    private Date createdAt;
+    @Column(name = "updated_at")
+    private Date updatedAt;
+    @Column(name = "is_active")
+    private boolean isActive;
 
 }
