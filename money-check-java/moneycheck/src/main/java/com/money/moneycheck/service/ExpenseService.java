@@ -22,13 +22,15 @@ public class ExpenseService {
 
     public ExpenseListResDto getExpensesList(ExpenseReqDto req) {
         log.info(req.toString());
-        ExpenseListResDto expenseList= expenseMapper.getExpensesList(req);
+        ExpenseListResDto expenseList = expenseMapper.getExpensesList(req);
 
         log.info(expenseList.toString());
-//        if (expense.isPresent()){
-//            return expense;
-//        }
+        if (expense.isPresent()){
+            return expense;
+        }
         return expenseList;
+    }
+
     public Optional<Expense> getExpensesByUserId(@PathVariable Long userId) {
         Optional<Expense> expense= expenseRepository.findByUserId(userId);
         if (expense.isPresent()){
