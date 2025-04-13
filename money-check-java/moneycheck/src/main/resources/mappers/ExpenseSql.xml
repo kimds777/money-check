@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.money.moneycheck.mapper.ExpenseMapper">
-    <select id="getExpensesList" resultType="map">
+    <select id="getExpensesCount" resultType="int">
         SELECT
-            u.nickname, me.expenditure_id, ag.name as asset_name, ec."name" as expenditure_class_name,
-            me.amount, me.expenditure_at, me."content"
+            COUNT(*)
+        FROM money_check.monthly_expenditure_2503 me -- 년월일 고민해야함
+        WHERE me.is_active = true
+        AND me.user_id = 1 -- #{userId}로 수정필요
+        <if test = "searchWord != null">
+            AND me.content LIKE '%' || #{searchWord} || '%'
+        </if>
+    </select>
+
+    <select id="getExpensesList" resultType="com.money.moneycheck.dto.expense.ExpenseResDto">
+        SELECT
+            u.nickname,
+            me.expenditure_id as expenditureId,
+            ag.name as assetName,
+            ec.name as expenditureClassName,
+            me.amount,
+            me.expenditure_at as expenditureAt,
+            me.content
         FROM money_check.monthly_expenditure_2503 me
                  JOIN money_check.users u ON u.user_id = me.user_id
                  JOIN money_check.asset_group ag ON ag.asset_id = me.asset_id
                  JOIN money_check.expenditure_classification ec ON ec.expenditure_class_id  = me.expenditure_class_id
         WHERE me.is_active = true
-            AND me.user_id = 1 -- #{userId}
+            AND me.user_id = 1 -- #{userId}로 수정필요
             <if test = "searchWord != null">
                 AND me.content LIKE '%' || #{searchWord} || '%'
             </if>
     </select>
+
 </mapper>
