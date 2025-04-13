@@ -1,12 +1,14 @@
 package com.money.moneycheck.dto.expense;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ExpenseResDto {
     private Long expenditureId;
     private String nickname;
