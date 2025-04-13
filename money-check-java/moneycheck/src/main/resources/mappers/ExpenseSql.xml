@@ -8,6 +8,9 @@
         FROM money_check.monthly_expenditure_2503 me -- 년월일 고민해야함
         WHERE me.is_active = true
         AND me.user_id = #{userId}
+        <if test = "assetId != null" >
+          AND me.asset_id = #{assetId}
+        </if>
         <if test = "searchWord != null">
             AND me.content LIKE '%' || #{searchWord} || '%'
         </if>
@@ -30,6 +33,9 @@
                  JOIN money_check.expenditure_classification ec ON ec.expenditure_class_id  = me.expenditure_class_id
         WHERE me.is_active = true
             AND me.user_id = #{userId}
+            <if test = "assetId != null" >
+                AND me.asset_id = #{assetId}
+            </if>
             <if test = "searchWord != null">
                 AND me.content LIKE '%' || #{searchWord} || '%'
             </if>
