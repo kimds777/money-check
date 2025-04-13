@@ -26,6 +26,7 @@ public class ExpenseController {
     @Operation(summary = "지출내역 조회", description = "기존 요청값 user_id, searchWord")
     @GetMapping("/list")
     public ResponseEntity getExpensesList(ExpenseReqDto req) {
+//        req.setUserId(1);
         ExpenseListResDto expenseList = expenseService.getExpensesList(req);
 //        System.out.println(expenseList.getResult());
 
