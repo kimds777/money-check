@@ -23,11 +23,11 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
-    @Operation(summary = "지출내역 조회", description = "기존 요청값 user_id")
+    @Operation(summary = "지출내역 조회", description = "기존 요청값 user_id, searchWord")
     @GetMapping("/list")
     public ResponseEntity getExpensesList(ExpenseReqDto req) {
         ExpenseListResDto expenseList = expenseService.getExpensesList(req);
-        System.out.println(expenseList.getResult());
+//        System.out.println(expenseList.getResult());
 
         return ResponseEntity.ok(expenseList);
     }
