@@ -35,12 +35,12 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseList);
     }
 
-//    @GetMapping("/detail")
-//    public ResponseEntity<Expense> getExpensesDetail(ExpenseReqDto req) { //나중에 파라미터 USER로 변경
-//        Optional<Expense> expense = expenseService.getExpensesByUserId(req.getUserId());
-//
-//        return expense
-//                .map(e -> ResponseEntity.ok(e)) //메서드 레퍼런스로 줄인 코드 -> ResponseEntity::ok (Body에 e가 담겨진다)
-//                .orElseGet(() -> ResponseEntity.notFound().build()); // 값이 없는 경우 실행되는 코드 (404)
-//    }
+    @GetMapping("/detail")
+    public ResponseEntity<Expense> getExpensesDetail(ExpenseReqDto req) { //나중에 파라미터 USER로 변경
+        Optional<Expense> expense = expenseService.getExpense(req);
+
+        return expense
+                .map(e -> ResponseEntity.ok(e)) //메서드 레퍼런스로 줄인 코드 -> ResponseEntity::ok (Body에 e가 담겨진다)
+                .orElseGet(() -> ResponseEntity.notFound().build()); // 값이 없는 경우 실행되는 코드 (404)
+    }
 }

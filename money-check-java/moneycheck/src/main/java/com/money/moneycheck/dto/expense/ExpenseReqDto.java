@@ -13,4 +13,5 @@ public class ExpenseReqDto {
     private long userId;
     private Long assetId;
     private String searchWord;
+    private String searchListCountYn;
 }
