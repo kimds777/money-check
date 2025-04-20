@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpenseService } from '../services/expense.service';
+import { ExpenseService } from '../../services/expense.service';
 
 @Component({
-  selector: 'app-expense',
-  templateUrl: './expense.component.html',
-  styleUrls: ['./expense.component.scss']
+  selector: 'app-expense-list',
+  templateUrl: './expense-list.component.html',
+  styleUrls: ['./expense-list.component.scss']
 })
-export class ExpenseComponent implements OnInit {
+export class ExpenseListComponent implements OnInit {
   expenseList: Record<string, any>[] = [];
   expense: Record<string, any> = {};
 
@@ -19,9 +19,9 @@ export class ExpenseComponent implements OnInit {
 
     // 지출리스트 조회 (ALL, 예산별, 기간별, 검색어별...)
   getExpensesList(req: Record<string, any>): void {
-    this.expenseService.getExpensesList(req).subscribe((data) => {
-      this.expenseList = data;
-      alert(data);
+    this.expenseService.getExpensesList(req).subscribe((res) => {
+      this.expenseList = res;
+      alert(res);
     });
   }
 }
