@@ -1,6 +1,36 @@
-<h2>지출 목록 출력 테스트</h2>
-<ul>
-  <li *ngFor = "let e of expenseList">
-    {{e['amount']}}
-  </li>
-</ul>
+<div>
+  <h2>내역</h2>
+  <table>
+    <thead>
+      <tr class="tab">
+        <td>전체()<span>0원</span></td>
+        <td>수입()<span>0원</span></td>
+        <td>지출()<span>0원</span></td>
+        <td>이체()<span>0원</span></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+        <td>날짜</td>
+        <td>자산</td>
+        <td>분류</td>
+        <td>금액</td>
+        <td>내용</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+        <td>25.5.7(수)</td>
+        <td>삼성카드</td>
+        <td>식비</td>
+        <td>10,000원</td>
+        <td>회사점심/김치참치김밥</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <ul>
+    <li *ngFor = "let e of expenseList">
+      {{e['amount']}}
+    </li>
+  </ul> -->
+</div>
