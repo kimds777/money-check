@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -26,7 +23,7 @@ public class ExpenseController {
     private final ExpenseService expenseService;
 
     @Operation(summary = "지출내역 조회", description = "기존 요청값 user_id, searchWord")
-    @GetMapping("/list")
+    @PostMapping("/list")
     public ResponseEntity getExpensesList(@Validated @RequestBody ExpenseReqDto req) {
 //        req.setUserId(1);
         ExpenseListResDto expenseList = expenseService.getExpensesList(req);
@@ -35,7 +32,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseList);
     }
 
-    @GetMapping("/detail")
+    @PostMapping("/detail")
     public ResponseEntity<Expense> getExpensesDetail(ExpenseReqDto req) { //나중에 파라미터 USER로 변경
         Optional<Expense> expense = expenseService.getExpense(req);
 
