@@ -21,12 +21,15 @@ export class ExpenseListComponent implements OnInit {
 
     // 지출리스트 조회 (ALL, 예산별, 기간별, 검색어별...)
   getExpensesList(req: Record<string, any>): void {
-    this.expenseService.getExpensesList(req).subscribe((res) => {
+    this.expenseService.getExpensesList(req).subscribe({
+      next: (res) => {
       console.log(res);
       this.expenseList = res.result;
       this.totalExpense = res.totalAmount;
       this.totalCount = res.totalCount;
       console.log(this.expenseList);
+      },
+      error: (e) => console.error(e)
     });
   }
 }
