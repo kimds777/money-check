@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.money.moneycheck.mapper.IncomeMapper">
+
+    <select id="getIncomesCount" resultType="int">
+        <include refid="com.money.moneycheck.mapper.IncomeMapper.getIncomeListQuery"></include>
+    </select>
+
+    <select id="getIncomeList" resultType="com.money.moneycheck.dto.income.IncomeResDto">
+        <include refid="com.money.moneycheck.mapper.IncomeMapper.getIncomeListQuery"></include>
+    </select>
+
+    <sql id="getIncomeListQuery">
+        SELECT
+        <choose>
+            <when test='searchListCountYn != null and searchListCountYn == "Y"'>
+                --getIncomesCount
+                COUNT(*)
+            </when>
+            <otherwise>
+                u.nickname,
+                mi.income_id as incomeId,
+                ag.name as assetName,
+                ic.name as incomeClassName,
+                mi.amount,
+                mi.income_at as incomeAt,
+                mi.content,
+                mi.created_at as createdAt,
+                mi.updated_at as updatedAt
+            </otherwise>
+        </choose>
+        FROM money_check.monthly_income_2503 mi
+        JOIN money_check.users u ON u.user_id = mi.user_id
+        JOIN money_check.asset_group ag ON ag.asset_id = mi.asset_id
+        JOIN money_check.income_classification ic ON ic.income_class_id  = mi.income_class_id
+        WHERE mi.is_active = true
+        AND mi.user_id = #{userId}
+        <if test = "assetId != null" >
+            AND mi.asset_id = #{assetId}
+        </if>
+        <if test = "searchWord != null">
+            AND mi.content LIKE '%' || #{searchWord} || '%'
+        </if>
+    </sql>
+
+</mapper>
