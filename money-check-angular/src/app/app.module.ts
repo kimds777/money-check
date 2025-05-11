@@ -8,6 +8,8 @@ import localeKo from '@angular/common/locales/ko';  // 한국어 로케일 데�
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExpenseModule } from './expense/expense.module';
+import { IncomeModule } from './income/income.module';
+import { MonthlyModule } from './monthly/monthly.module';
 
 // 한국어 로케일 데이터 등록
 registerLocaleData(localeKo);
@@ -19,7 +21,9 @@ registerLocaleData(localeKo);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ExpenseModule
+    ExpenseModule,
+    IncomeModule,
+    MonthlyModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ko-KR' }  // 한국어 로케일 설정
