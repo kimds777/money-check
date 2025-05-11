@@ -22,9 +22,9 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
-    @Operation(summary = "지출내역 조회", description = "기존 요청값 user_id, searchWord")
+    @Operation(summary = "지출내역 조회", description = "기본 요청값 user_id")
     @PostMapping("/list")
-    public ResponseEntity getExpensesList(@Validated @RequestBody ExpenseReqDto req) {
+    public ResponseEntity<ExpenseListResDto> getExpensesList(@Validated @RequestBody ExpenseReqDto req) {
 //        req.setUserId(1);
         ExpenseListResDto expenseList = expenseService.getExpensesList(req);
 //        System.out.println(expenseList.getResult());

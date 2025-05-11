@@ -12,6 +12,11 @@ public class ExpenseReqDto {
     @NotNull
     private long userId;
     private Long assetId;
+    private String yearMonth;
     private String searchWord;
     private String searchListCountYn;
+
+    public ExpenseReqDto(long userId){
+        this.userId = userId;
+    }
 }
