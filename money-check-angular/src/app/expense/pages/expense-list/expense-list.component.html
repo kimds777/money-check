@@ -5,7 +5,7 @@
       <tr class="tab">
         <td>전체()<span>0원</span></td>
         <td>수입()<span>0원</span></td>
-        <td>지출()<span>0원</span></td>
+        <td>지출({{totalExpenseCount}})<span>{{totalExpenseAmount | number: '1.0-0' }}원</span></td>
         <td>이체()<span>0원</span></td>
       </tr>
       <tr>
@@ -36,9 +36,4 @@
       </tr>
     </tbody>
   </table>
-  <!-- <ul>
-    <li *ngFor = "let e of expenseList">
-      {{e['amount']}}
-    </li>
-  </ul> -->
 </div>

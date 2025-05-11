@@ -9,8 +9,8 @@ import { ExpenseService } from '../../services/expense.service';
 export class ExpenseListComponent implements OnInit {
   expenseList: Record<string, any>[] = [];
   expense: Record<string, any> = {};
-  totalExpense: string = "";
-  totalCount: string = "";
+  totalExpenseAmount: string = "";
+  totalExpenseCount: string = "";
 
   constructor(private expenseService: ExpenseService) {}
 
@@ -19,14 +19,14 @@ export class ExpenseListComponent implements OnInit {
     this.getExpensesList({"userId":1});
   }
 
-    // 지출리스트 조회 (ALL, 예산별, 기간별, 검색어별...)
+  // 지출리스트 조회 (ALL, 예산별, 기간별, 검색어별...)
   getExpensesList(req: Record<string, any>): void {
     this.expenseService.getExpensesList(req).subscribe({
       next: (res) => {
       console.log(res);
       this.expenseList = res.result;
-      this.totalExpense = res.totalAmount;
-      this.totalCount = res.totalCount;
+      this.totalExpenseAmount = res.totalAmount;
+      this.totalExpenseCount = res.totalCount;
       console.log(this.expenseList);
       },
       error: (e) => console.error(e)
